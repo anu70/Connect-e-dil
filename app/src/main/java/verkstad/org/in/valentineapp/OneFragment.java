@@ -224,7 +224,7 @@ public class OneFragment extends android.support.v4.app.Fragment {
                 message = editText2.getText().toString();
 
                 if (receiver == null) {
-                    Toast.makeText(OneFragment.this.getActivity(), "enter valid name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OneFragment.this.getActivity(), "Enter valid name", Toast.LENGTH_SHORT).show();
                 } else {
                     if (radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(OneFragment.this.getActivity(), "Please Select a rose", Toast.LENGTH_SHORT).show();

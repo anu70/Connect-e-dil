@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.*;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
     RelativeLayout fb_login_inner_relative;
-    TextView loading_fb_login;
+    ProgressBar loading_fb_login;
 
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
         @Override
@@ -198,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginButton loginButton = (LoginButton)findViewById(R.id.login_button);
         fb_login_inner_relative= (RelativeLayout) findViewById(R.id.facebook_login_inner_relative);
-        loading_fb_login= (TextView) findViewById(R.id.loading_facebook_login);
+        loading_fb_login= (ProgressBar) findViewById(R.id.loader_login);
         //textView = (TextView) view.findViewById(R.id.textView);
         loginButton.setReadPermissions(Arrays.asList("public_profile, email"));
 
