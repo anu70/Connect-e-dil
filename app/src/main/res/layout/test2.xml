@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+ <TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20px"
+    android:background="#fff8f6">
+    <TableRow
+        android:paddingTop="10px"
+        android:layout_weight="0.1"
+        >
+        <View android:layout_width="0px" android:layout_weight="1"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Most Popular"
+            android:textColor="#981522"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="50px"
+            />
+        <View android:layout_width="0px" android:layout_weight="1"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_weight="0.1"
+        android:layout_margin="30px">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:hint="Search your friend's Counts"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_edittext"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="0.1">
+        <View android:layout_width="0px" android:layout_weight="1"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+        <ImageView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"/>
+        <View android:layout_width="0px" android:layout_weight="1"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="0.3">
+        <View android:layout_width="0px" android:layout_weight="1.5"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Roses only from female:"
+            android:textSize="30px"
+            android:textStyle="bold"
+            android:textColor="#981522"
+            android:layout_gravity="center" />
+        <CheckBox
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:layout_gravity="center"/>
+        <View android:layout_width="0px" android:layout_weight="1"
+
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"></View>
+    </TableRow>
+
+    <TableRow
+        android:layout_weight="0.1"
+        android:background="#ececec"
+        >
+        <TextView android:layout_weight="1.5"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Rank"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="10px"/>
+        <TextView android:layout_weight="4"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="10px"/>
+        <ImageView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"/>
+
+    </TableRow>
+
+    <TableRow
+
+        android:layout_weight="4">
+
+    </TableRow>
+</TableLayout>
+</ScrollView>

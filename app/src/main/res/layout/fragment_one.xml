@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swipe_container">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/scroll_home">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff8f6"
+        >
+
+        <ProgressBar
+            android:id="@+id/loader_onefragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            style="?android:attr/progressBarStyle"
+            android:visibility="visible"/>
+
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10px"
+            android:background="#fff8f6"
+            android:visibility="visible"
+            android:id="@+id/table_onefragment">
+
+            <TableRow
+                android:layout_weight="10">
+                <TableLayout android:layout_width="0px" android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center">
+                    <TableRow
+                        android:layout_weight="2">
+                        <ImageView
+                            android:layout_width="0px"
+                            android:layout_height="fill_parent"
+                            android:src="@drawable/red_rose"
+                            android:layout_weight="5"/>
+                        <View android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="2"></View>
+                        <TextView
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/red_from_girls"
+                            android:layout_gravity="center"
+                            android:layout_weight="5"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_weight="2">
+                        <ImageView
+                            android:layout_width="0px"
+                            android:layout_height="fill_parent"
+                            android:src="@drawable/yellow_rose"
+                            android:layout_weight="5"/>
+                        <View android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="2"></View>
+                        <TextView
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/yellow_form_girls"
+                            android:layout_gravity="center"
+                            android:layout_weight="5"/>
+
+                    </TableRow>
+                </TableLayout>
+
+
+                <ImageView
+                    android:layout_width="0px"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/girl_home"
+                    android:id="@+id/girl_home"/>
+
+                <ImageView
+                    android:layout_width="0px"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/boy_home"
+                    android:layout_weight="1.48"
+                    android:layout_gravity="center"/>
+
+
+                <TableLayout android:layout_width="0px" android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center">
+                    <TableRow
+                        android:layout_weight="2">
+
+
+                        <TextView
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/red_from_boys"
+                            android:gravity="right"
+                            android:layout_gravity="center"
+                            android:layout_weight="5"
+                            />
+                        <View android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="2"></View>
+                        <ImageView
+                            android:layout_width="0px"
+                            android:layout_height="fill_parent"
+                            android:src="@drawable/red_rose"
+                            android:layout_weight="5"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_weight="2">
+
+
+                        <TextView
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/yellow_from_boys"
+                            android:gravity="right"
+                            android:layout_gravity="center"
+                            android:layout_weight="5"
+                            />
+                        <View android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="2"></View>
+                        <ImageView
+                            android:layout_width="0px"
+                            android:layout_height="fill_parent"
+                            android:src="@drawable/yellow_rose"
+                            android:layout_weight="5"/>
+
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+
+
+            <TableRow
+                android:layout_weight="1"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="Send Flowers"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:textSize="12dp"
+                    android:id="@+id/send_flower"
+                    android:onClick="send_flowers"
+
+
+                    />
+                <Button
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="Received Flowers"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:textSize="12dp"
+                    android:id="@+id/received_flowers"
+                    android:onClick="received_flowers"
+
+                    />
+            </TableRow>
+
+
+            <TableLayout
+                android:layout_weight="20"
+                android:visibility="visible"
+                android:id="@+id/send_table_layout">
+                <TableRow
+                    android:layout_weight="3"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp">
+
+                    <AutoCompleteTextView
+                        android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:hint="Search your crush here.. "
+                        android:layout_weight="13"
+                        android:padding="10dp"
+                        android:lines="1"
+                        android:maxLength="100"
+                        android:background="@drawable/rounded_edittext"
+                        android:id="@+id/autoCompleteTextView"
+                        />
+
+                </TableRow>
+
+
+
+                <TableRow
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:padding="10dp">
+                    <RadioGroup
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/radio"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        >
+                        <View android:layout_width="0px" android:layout_weight="1"
+                            android:layout_height="fill_parent"
+                            ></View>
+
+
+                        <RadioButton
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:id="@+id/radiobutton_red"
+                            android:weightSum="1"
+                            android:buttonTint="#b81738"
+                            />
+
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/red_rose"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+
+                        <View android:layout_width="0px" android:layout_weight="1"
+
+                            android:layout_height="fill_parent"></View>
+
+
+                        <RadioButton
+                            android:layout_width="0px"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:id="@+id/radiobutton_yellow"
+                            android:onClick="select_rose"
+                            android:buttonTint="#FFFF00"
+
+
+                            />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/yellow_rose"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+                        <View android:layout_width="0px" android:layout_weight="1"
+
+                            android:layout_height="fill_parent"></View>
+
+                    </RadioGroup>
+
+                </TableRow>
+
+                <TableRow android:layout_weight="3">
+                    <View android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"></View>
+                    <CheckBox
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:text="Send As Anonymous"
+                        android:gravity="center"
+                        android:layout_weight="3"
+                        android:layout_gravity="center"
+                        android:id="@+id/anonymous"
+                        android:checked="false"
+                        android:longClickable="true"
+                        android:buttonTint="#b81738"
+                        />
+                    <View android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"></View>
+                </TableRow>
+
+
+                <TableRow android:layout_weight="20"
+                    android:padding="10dp"
+
+                    >
+                    <EditText
+                        android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:hint="Type your Message here"
+                        android:gravity="top"
+                        android:padding="10dp"
+                        android:id="@+id/message_box"
+                        android:lines="2"
+                        android:maxLength="400"
+                        android:background="@drawable/rounded_edittext"
+                        />
+
+
+
+                </TableRow>
+
+
+                <TableRow android:layout_weight="3"
+                    >
+                    <View android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.5"></View>
+                    <Button
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Send"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:id="@+id/send"
+                        android:onClick="send_rose"/>
+                    <View android:layout_width="0px"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.5"></View>
+
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="135"
+                android:visibility="gone"
+                android:id="@+id/received_table_layout">
+                <TableRow
+                    android:layout_weight="1">
+                    <view
+                        android:id="@+id/recycler_view"
+                        class="android.support.v7.widget.RecyclerView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        />
+
+                </TableRow>
+            </TableLayout>
+
+        </TableLayout>
+    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+

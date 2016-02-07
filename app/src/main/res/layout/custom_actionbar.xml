@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:facebook="http://schemas.android.com/tools"
+
+    android:orientation="horizontal"
+    android:background="#b81738"
+    android:padding="5dip">
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        >
+        <com.facebook.login.widget.ProfilePictureView
+            android:id="@+id/profile_home_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:foreground="@drawable/rectangle"
+            android:adjustViewBounds="true"
+
+            />
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/profile_home_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Profile Name"
+        android:layout_marginTop="5dp"
+        android:textColor="#ffffff"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+
+</RelativeLayout>
