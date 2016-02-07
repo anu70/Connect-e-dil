@@ -107,180 +107,41 @@ public class OneFragment extends android.support.v4.app.Fragment {
         loader_onefragment= (ProgressBar) view.findViewById(R.id.loader_onefragment);
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
-   /**     scroll_home = (NestedScrollView) view.findViewById(R.id.scroll_home);
-       scroll_home.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-           @Override
-           public void onScrollChanged() {
-               int scrollY = scroll_home.getScrollY();
-               // Toast.makeText(OneFragment.this.getActivity(), "" + scrollY, Toast.LENGTH_SHORT).show();
-               if (scrollY == 0) swipeLayout.setEnabled(true);
-               else swipeLayout.setEnabled(false);
 
-           }
-       });**/
+        all();
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeLayout.setRefreshing(true);
+               swipeLayout.setRefreshing(true);
                 Log.d("Swipe", "Refreshing Number");
                 (new Handler()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         swipeLayout.setRefreshing(false);
-                        functions.get_users(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
-                            @Override
-                            public void onSuccess(int size) {
-
-                               functions.count_roses(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
-                                   @Override
-                                   public void onSuccess(int size) {
-                                       android.support.v4.app.FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
-                                       fragmentTransaction.detach(OneFragment.this).attach(OneFragment.this).commit();
-                                   }
-                               });
-
-                            }
-                        });
+                        all();
                     }
                 }, 3000);
 
 
             }
         });
-
-        functions.get_current_user(OneFragment.this.getActivity());
-
-
-        functions.get_users(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
-            @Override
-            public void onSuccess(int size) {
-
-                for (int i = 0; i < size; i++) {
-                    if (functions.users[i].equals(functions.current_user_name)) {
-                        red_from_girls.setText(functions.red_roses_from_girls[i]);
-                        yellow_from_girls.setText(functions.yellow_roses_from_girls[i]);
-                        red_from_boys.setText(functions.red_roses_from_boys[i]);
-                        yellow_from_boys.setText(functions.yellow_roses_from_boys[i]);
-                    }
-                }
-                loader_onefragment.setVisibility(View.GONE);
-                table_onefragment.setVisibility(View.VISIBLE);
-
-
-            }
-        });
-
-
-        functions.get_users(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
-            @Override
-            public void onSuccess(int size) {
-                for (int i = 0; i < size; i++) {
-                    if (!functions.users[i].equals(functions.current_user_name)) {
-                        friends_list_name.add(functions.users[i]);
-                        friends_list_image.add(functions.id[i]);
-                    }
-                }
-                // recyclerViewAdapterac = new RecyclerViewAdapterac(OneFragment.this.getActivity(),friends_list_image,friends_list_name);
-                //  autoCompleteTextView.setAdapter(recyclerViewAdapterac);
-                arrayAdapter = new ArrayAdapter<String>(OneFragment.this.getActivity(), R.layout.support_simple_spinner_dropdown_item, friends_list_name);
-                autoCompleteTextView.setAdapter(arrayAdapter);
-            }
-        });
-
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                receiver = arrayAdapter.getItem(position).toString();
-
-            }
-        });
-        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                receiver = null;
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-        send_flowers.setOnClickListener(new View.OnClickListener() {
+        received_flowers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableLayout_send.setVisibility(View.VISIBLE);
-                tableLayout_received.setVisibility(View.GONE);
-
+                tableLayout_received.setVisibility(View.VISIBLE);
+                tableLayout_send.setVisibility(View.GONE);
+                recyclerView.setLayoutManager(new LinearLayoutManager(OneFragment.this.getActivity()));
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(OneFragment.this.getActivity(), sender_name, sent_message, sender_id, which_rose_sent);
+                recyclerView.setAdapter(adapter);
             }
         });
-
-        functions.count_roses(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
-            @Override
-            public void onSuccess(int size) {
-                for (int i = 0; i < size; i++) {
-                    final String sender = functions.sender_json[i];
-                    if (functions.receiver_json[i].equals(functions.current_user_name)) {
-                        if (functions.anonymous_json[i].equals("yes")) {
-                            sender_name.add("Anonymous");
-                            sent_message.add(functions.message_json[i]);
-                            sender_id.add(null);
-                            if (functions.red_rose_json[i].equals("1")) {
-                                which_rose_sent.add(R.drawable.red_rose);
-                            } else which_rose_sent.add(R.drawable.yellow_rose);
-                            //sender_id.add();
-
-                        } else {
-                            sender_name.add(functions.sender_json[i]);
-                            sent_message.add(functions.message_json[i]);
-                            if (functions.red_rose_json[i].equals("1")) {
-                                which_rose_sent.add(R.drawable.red_rose);
-                            } else which_rose_sent.add(R.drawable.yellow_rose);
-                            functions.get_users(OneFragment.this.getContext(), new Functions.VolleyCallback() {
-                                @Override
-                                public void onSuccess(int size_users) {
-                                    for (int j = 0; j < size_users; j++) {
-                                        if (sender.equals(functions.users[j])) {
-                                            sender_id.add(functions.id[j]);
-                                        }
-                                        // Toast.makeText(OneFragment.this.getContext(),Arrays.toString(sender_id),Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-                        }
-                    }
-                }
-                received_flowers.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tableLayout_received.setVisibility(View.VISIBLE);
-                        tableLayout_send.setVisibility(View.GONE);
-
-                        recyclerView.setLayoutManager(new LinearLayoutManager(OneFragment.this.getActivity()));
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(OneFragment.this.getActivity(), sender_name, sent_message, sender_id, which_rose_sent);
-                        recyclerView.setAdapter(adapter);
-
-
-                    }
-                });
-            }
-        });
-
 
 
         radiobutton_red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean checked = ((RadioButton)v).isChecked();
+                boolean checked = ((RadioButton) v).isChecked();
                 switch (v.getId()) {
                     case R.id.radiobutton_red:
                         if (checked) {
@@ -331,7 +192,30 @@ public class OneFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                receiver = arrayAdapter.getItem(position).toString();
 
+            }
+        });
+        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                receiver = null;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         send.setOnClickListener(new View.OnClickListener() {
@@ -362,10 +246,119 @@ public class OneFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        send_flowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableLayout_send.setVisibility(View.VISIBLE);
+                tableLayout_received.setVisibility(View.GONE);
 
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+
+
+
+
+
+    public void all(){
+
+        functions.get_current_user(OneFragment.this.getActivity());
+        tableLayout_send.setVisibility(View.VISIBLE);
+        tableLayout_received.setVisibility(View.GONE);
+
+
+
+        functions.get_users(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
+            @Override
+            public void onSuccess(int size) {
+
+                for (int i = 0; i < size; i++) {
+                    if (functions.users[i].equals(functions.current_user_name)) {
+                        red_from_girls.setText(functions.red_roses_from_girls[i]);
+                        yellow_from_girls.setText(functions.yellow_roses_from_girls[i]);
+                        red_from_boys.setText(functions.red_roses_from_boys[i]);
+                        yellow_from_boys.setText(functions.yellow_roses_from_boys[i]);
+                    }
+                }
+                loader_onefragment.setVisibility(View.GONE);
+                table_onefragment.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+
+        functions.get_users(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
+            @Override
+            public void onSuccess(int size) {
+                friends_list_image.clear();friends_list_name.clear();
+                for (int i = 0; i < size; i++) {
+                    if (!functions.users[i].equals(functions.current_user_name)) {
+                        friends_list_name.add(functions.users[i]);
+                        friends_list_image.add(functions.id[i]);
+                    }
+                }
+                // recyclerViewAdapterac = new RecyclerViewAdapterac(OneFragment.this.getActivity(),friends_list_image,friends_list_name);
+                //  autoCompleteTextView.setAdapter(recyclerViewAdapterac);
+                arrayAdapter = new ArrayAdapter<String>(OneFragment.this.getActivity(), R.layout.support_simple_spinner_dropdown_item, friends_list_name);
+                autoCompleteTextView.setAdapter(arrayAdapter);
+            }
+        });
+
+
+        functions.count_roses(OneFragment.this.getActivity(), new Functions.VolleyCallback() {
+            @Override
+            public void onSuccess(int size) {
+                sender_name.clear();sent_message.clear();sender_id.clear();which_rose_sent.clear();
+                for (int i = 0; i < size; i++) {
+                    final String sender = functions.sender_json[i];
+                    final  String msg = functions.message_json[i];
+                    final String rr = functions.red_rose_json[i];
+                    if (functions.receiver_json[i].equals(functions.current_user_name)) {
+                        if (functions.anonymous_json[i].equals("yes")) {
+                            sender_name.add("Anonymous");
+                            sent_message.add(functions.message_json[i]);
+                            sender_id.add(null);
+                            if (functions.red_rose_json[i].equals("1")) {
+                                which_rose_sent.add(R.drawable.red_rose);
+                            } else which_rose_sent.add(R.drawable.yellow_rose);
+                            //sender_id.add();
+
+                        } else {
+                            functions.get_users(OneFragment.this.getContext(), new Functions.VolleyCallback() {
+                                @Override
+                                public void onSuccess(int size_users) {
+                                    for (int j = 0; j < size_users; j++) {
+                                        if (sender.equals(functions.users[j])) {
+                                            sender_id.add(functions.id[j]);
+                                        }
+                                    }
+                                    sender_name.add(sender);
+                                    sent_message.add(msg);
+                                    if (rr.equals("1")) {
+                                        which_rose_sent.add(R.drawable.red_rose);
+                                    } else which_rose_sent.add(R.drawable.yellow_rose);
+
+                                }
+                            });
+                        }
+                    }
+                }
+              //  Toast.makeText(OneFragment.this.getActivity(),sender_id.toString(),Toast.LENGTH_SHORT).show();
+                recyclerView.setLayoutManager(new LinearLayoutManager(OneFragment.this.getActivity()));
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(OneFragment.this.getActivity(), sender_name, sent_message, sender_id, which_rose_sent);
+                recyclerView.setAdapter(adapter);
+
+
+            }
+        });
+
+
+
     }
 
 
