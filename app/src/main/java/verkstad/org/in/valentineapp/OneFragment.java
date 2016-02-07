@@ -345,7 +345,12 @@ public class OneFragment extends android.support.v4.app.Fragment {
                     if (radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(OneFragment.this.getActivity(), "Please Select a rose", Toast.LENGTH_SHORT).show();
                     } else {
-                        functions.send(OneFragment.this.getActivity(), functions.current_user_name, receiver, red_rose, yellow_rose, anonymous, message);
+                        if(message.equals("")){
+                            functions.send(OneFragment.this.getActivity(), functions.current_user_name, receiver, red_rose, yellow_rose, anonymous,"No message to display");
+                        }
+                        else {
+                            functions.send(OneFragment.this.getActivity(), functions.current_user_name, receiver, red_rose, yellow_rose, anonymous, message);
+                        }
                     }
 
                     radioGroup.clearCheck();
